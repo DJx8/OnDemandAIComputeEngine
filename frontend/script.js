@@ -19,32 +19,57 @@ const sourceLabel = document.getElementById("source-label");
 const sourceLanguage = document.getElementById("source-language");
 const targetLabel = document.getElementById("target-label");
 
+const PLACEHOLDER_TEXT = "Your translation will appear here...";
+
+
+// Show placeholder
+function showPlaceholder() {
+    outputText.textContent = PLACEHOLDER_TEXT;
+    outputText.classList.add("placeholder");
+}
+
+
+// Show actual output
+function showOutput(text) {
+    outputText.textContent = text;
+    outputText.classList.remove("placeholder");
+}
+
 
 // Update language labels based on direction
 function updateDirection() {
+
     const direction = directionSelect.value;
 
     if (direction === "English → Indian Language") {
+
         sourceLabel.textContent = "From English";
         sourceLanguage.textContent = "English";
         targetLabel.textContent = "Translate to";
+
     } else {
+
         sourceLabel.textContent = "From Indian Language";
         sourceLanguage.textContent = languageSelect.value;
         targetLabel.textContent = "Translate to English";
+
     }
 }
 
 
 // Character counter
 inputText.addEventListener("input", () => {
+
     charCount.textContent = `${inputText.value.length} / 5000`;
 
     if (directionSelect.value === "Indian Language → English") {
         sourceLanguage.textContent = languageSelect.value;
     }
+
 });
 
+
+// Language selection events
 directionSelect.addEventListener("change", updateDirection);
 languageSelect.addEventListener("change", updateDirection);
 
@@ -65,7 +90,9 @@ translateBtn.addEventListener("click", async () => {
 
     translateBtn.disabled = true;
     buttonText.textContent = "Translating...";
-    outputText.textContent = "Please wait while the AI translates your text...";
+
+    showOutput("Please wait while the AI translates your text...");
+
     resultStatus.textContent = "Processing";
     copyBtn.disabled = true;
 
@@ -89,12 +116,17 @@ translateBtn.addEventListener("click", async () => {
         const data = await response.json();
 
         if (!response.ok) {
+
             if (response.status === 429) {
-                throw new Error("Too many requests. Please wait a minute and try again.");
+                throw new Error(
+                    "Too many requests. Please wait a minute and try again."
+                );
             }
 
             if (response.status === 502) {
-                throw new Error("Translation service is temporarily unavailable. Please try again later.");
+                throw new Error(
+                    "Translation service is temporarily unavailable. Please try again later."
+                );
             }
 
             throw new Error(
@@ -105,16 +137,20 @@ translateBtn.addEventListener("click", async () => {
         }
 
         if (data.status !== "success") {
-            throw new Error("The translation service returned an unexpected response.");
+            throw new Error(
+                "The translation service returned an unexpected response."
+            );
         }
 
-        outputText.textContent = data.result;
+        showOutput(data.result);
+
         resultStatus.textContent = "Translation completed";
         copyBtn.disabled = false;
 
     } catch (error) {
 
-        outputText.textContent = "Translation could not be completed.";
+        showOutput("Translation could not be completed.");
+
         resultStatus.textContent = "Failed";
         errorMessage.textContent = error.message;
 
@@ -122,7 +158,9 @@ translateBtn.addEventListener("click", async () => {
 
         translateBtn.disabled = false;
         buttonText.textContent = "Translate →";
+
     }
+
 });
 
 
@@ -130,13 +168,15 @@ translateBtn.addEventListener("click", async () => {
 clearBtn.addEventListener("click", () => {
 
     inputText.value = "";
-    outputText.textContent = "Your translation will appear here...";
+
+    showPlaceholder();
 
     charCount.textContent = "0 / 5000";
     resultStatus.textContent = "Ready to translate";
 
     errorMessage.textContent = "";
     copyBtn.disabled = true;
+
 });
 
 
@@ -146,7 +186,9 @@ copyBtn.addEventListener("click", async () => {
     const translatedText = outputText.textContent;
 
     try {
+
         await navigator.clipboard.writeText(translatedText);
+
         copyBtn.textContent = "Copied!";
 
         setTimeout(() => {
@@ -154,10 +196,15 @@ copyBtn.addEventListener("click", async () => {
         }, 1500);
 
     } catch {
-        errorMessage.textContent = "Unable to copy. Please copy the text manually.";
+
+        errorMessage.textContent =
+            "Unable to copy. Please copy the text manually.";
+
     }
+
 });
 
 
 // Initial setup
+showPlaceholder();
 updateDirection();
