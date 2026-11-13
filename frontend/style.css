@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: #f1f5f9;
+    min-height: 100vh;
+}
+
+.navbar {
+    height: 72px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #252d40;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 17px;
+}
+
+.brand-icon {
+    background: #7565ed;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.status {
+    color: #aab5c7;
+    font-size: 13px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #35d39a;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 65px 24px 30px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.eyebrow {
+    color: #a397ff;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 15px 0;
+}
+
+.hero h1 span {
+    color: #988aff;
+}
+
+.hero p {
+    color: #9ba8bd;
+    font-size: 15px;
+}
+
+.translator {
+    background: #141c30;
+    border: 1px solid #28344b;
+    border-radius: 18px;
+    padding: 26px;
+}
+
+.direction-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+label,
+.panel-heading {
+    color: #aab5c7;
+    font-size: 13px;
+}
+
+select {
+    background: #202b43;
+    color: white;
+    border: 1px solid #35425d;
+    border-radius: 8px;
+    padding: 11px;
+    outline: none;
+}
+
+.language-row {
+    display: grid;
+    grid-template-columns: 1fr 45px 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.language-box {
+    background: #202b43;
+    border: 1px solid #35425d;
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.language-name {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.language-box select {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    padding: 5px 0;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.swap-icon {
+    text-align: center;
+    color: #a397ff;
+    font-size: 24px;
+}
+
+.text-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.text-panel {
+    background: #0e1628;
+    border: 1px solid #303c53;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    flex: 1;
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 15px 0;
+}
+
+textarea::placeholder {
+    color: #64748b;
+}
+
+.output-text {
+    flex: 1;
+    min-height: 150px;
+    padding: 15px 0;
+    color: #d9d5ff;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.panel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #718096;
+    font-size: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #26334a;
+}
+
+.text-button {
+    background: transparent;
+    border: none;
+    color: #a397ff;
+    cursor: pointer;
+}
+
+.text-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.translate-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #7565ed;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.translate-button:hover {
+    background: #897af7;
+}
+
+.translate-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.error-message {
+    color: #ff8585;
+    font-size: 13px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    color: #75839a;
+    font-size: 12px;
+    margin-top: 28px;
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .status {
+        font-size: 11px;
+    }
+
+    .container {
+        padding: 40px 14px 25px;
+    }
+
+    .translator {
+        padding: 16px;
+    }
+
+    .text-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .direction-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .language-row {
+        grid-template-columns: 1fr 30px 1fr;
+        gap: 5px;
+    }
+}

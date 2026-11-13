@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+gradio_client
+python-dotenv
+psutil
+requests
+numpy
+torch
+slowapi

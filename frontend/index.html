@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-Demand AI Compute Engine</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-icon">AI</div>
+            <span>On-Demand <strong>AI Engine</strong></span>
+        </div>
+        <div class="status">
+            <span class="status-dot"></span>
+            Backend connected
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <span class="eyebrow">AI-POWERED LANGUAGE TRANSLATION</span>
+            <h1>Words connect <span>worlds.</span></h1>
+            <p>Translate between English and Indian languages using remote AI compute.</p>
+        </section>
+
+        <section class="translator">
+
+            <div class="direction-row">
+                <label for="direction">Translation direction</label>
+                <select id="direction">
+                    <option value="English → Indian Language">
+                        English → Indian Language
+                    </option>
+                    <option value="Indian Language → English">
+                        Indian Language → English
+                    </option>
+                </select>
+            </div>
+
+            <div class="language-row">
+                <div class="language-box">
+                    <label id="source-label">From English</label>
+                    <div class="language-name" id="source-language">
+                        English
+                    </div>
+                </div>
+
+                <div class="swap-icon">⇄</div>
+
+                <div class="language-box">
+                    <label id="target-label">Translate to</label>
+                    <select id="language">
+                        <option>Hindi</option>
+                        <option>Malayalam</option>
+                        <option>Tamil</option>
+                        <option>Kannada</option>
+                        <option>Telugu</option>
+                        <option>Bengali</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-grid">
+                <div class="text-panel">
+                    <div class="panel-heading">Your text</div>
+                    <textarea id="input-text" maxlength="5000"
+                        placeholder="Enter the text you want to translate..."></textarea>
+                    <div class="panel-footer">
+                        <button id="clear-btn" class="text-button">
+                            Clear
+                        </button>
+                        <span id="char-count">0 / 5000</span>
+                    </div>
+                </div>
+
+                <div class="text-panel output-panel">
+                    <div class="panel-heading">Translation</div>
+                    <div id="output-text" class="output-text">
+                        Your translation will appear here...
+                    </div>
+                    <div class="panel-footer">
+                        <span id="result-status">Ready to translate</span>
+                        <button id="copy-btn" class="text-button" disabled>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="translate-btn" class="translate-button">
+                <span id="button-text">Translate →</span>
+            </button>
+
+            <p id="error-message" class="error-message"></p>
+
+        </section>
+
+        <footer>
+            Powered by IndicTrans2 · Hugging Face Remote Compute
+        </footer>
+
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
